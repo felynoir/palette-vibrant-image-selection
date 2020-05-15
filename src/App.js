@@ -17,10 +17,11 @@ const App = () => {
       <div>
         <img src={url} />
       </div>
+      <br />
       {state &&
         Object.keys(state).map((key, ind) => {
-          console.log(key);
-          console.log(state[key]);
+          const { _rgb, _hsl } = state[key];
+          console.log(`rbg(${_rgb.join(", ")})`);
           return (
             <div
               key={ind}
@@ -31,7 +32,7 @@ const App = () => {
                 style={{
                   height: "50px",
                   width: "50px",
-                  backgroundColor: "#000",
+                  backgroundColor: `rgb(${_rgb.join(", ")})`,
                   margin: "10px",
                 }}
               ></div>
