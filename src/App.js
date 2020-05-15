@@ -4,16 +4,28 @@ import "./App.css";
 import * as Vibrant from "node-vibrant";
 
 const App = () => {
-  const url =
-    "https://i.scdn.co/image/ab67616d00001e026ab5fc4e1dd227bef3100280";
+  const [url, setUrl] = useState(
+    "https://i.scdn.co/image/ab67616d00001e026ab5fc4e1dd227bef3100280"
+  );
+  const [text, setText] = useState("");
   const [state, setState] = useState({});
   useEffect(() => {
     Vibrant.from(url)
       .getPalette()
       .then((palette) => setState(palette));
-  }, []);
+  }, [url]);
   return (
     <div>
+      <input
+        type="text"
+        onChange={(e) => setText(e.target.value)}
+        value={text}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            setUrl(text);
+          }
+        }}
+      />
       <div>
         <img src={url} />
       </div>
@@ -21,7 +33,6 @@ const App = () => {
       {state &&
         Object.keys(state).map((key, ind) => {
           const { _rgb, _hsl } = state[key];
-          console.log(`rbg(${_rgb.join(", ")})`);
           return (
             <div
               key={ind}
