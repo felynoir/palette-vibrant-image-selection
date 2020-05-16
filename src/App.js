@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
-import "./app.css";
 import * as Vibrant from "node-vibrant";
 
 const App = () => {
